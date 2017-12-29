@@ -2,6 +2,7 @@ package zdatbit.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,5 +22,13 @@ public class UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @RequestMapping("/admin")
+    public ModelAndView admin(){
+        return new ModelAndView("admin/index");
+    }
+    @RequestMapping("/list")
+    public ModelAndView userList(){
+        return new ModelAndView("admin/table-font-list");
     }
 }
