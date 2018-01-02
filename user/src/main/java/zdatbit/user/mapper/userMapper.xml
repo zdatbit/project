@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zdatbit.user.domain.User" >
+<mapper namespace="zdatbit.user.dao.UserDao" >
+    <resultMap id="user" type="zdatbit.user.domain.User">
+        <id column="userID" property="userID" />
+        <result column="userName" property="userName"/>
+        <result column="phone" property="userPhone" />
 
-<!--查询-->
-<select id="selectUser" parameterType="int" resultType="User">
-    select * from user where userID=${id}
-</select>
-<!--单个添加-->
-<insert id="insertUser" useGeneratedKeys="true" keyProperty="userID">
-    insert into user (userName,phone)
-    values (${userName},${phone})
-</insert>
-<!--批量添加-->
-<insert id="insertUsers" useGeneratedKeys="true" keyProperty="id">
-    insert into user (userName,phone)
-    <foreach item="item" collection="list" separator=",">
-        (#{item.userName},#{item.phone})
-    </foreach>
-</insert>
+    </resultMap>
+    <!--查询-->
+    <!--<select id="selectUser" parameterType="int" resultMap="user">
+        select * from user where userID=${id}
+    </select>-->
+    <select id="selectAll" resultMap="user">
+        SELECT * from user
+    </select>
+    <!--单个添加-->
+    <!--<insert id="insertUser" useGeneratedKeys="true" keyProperty="userID">
+        insert into user (userName,phone)
+        values (${userName},${phone})
+    </insert>-->
+    <!--批量添加-->
+   <!-- <insert id="insertUsers" useGeneratedKeys="true" keyProperty="id">
+        insert into user (userName,phone)
+        <foreach item="item" collection="list" separator=",">
+            (#{item.userName},#{item.phone})
+        </foreach>
+    </insert>-->
 </mapper>

@@ -1,9 +1,11 @@
 package zdatbit.user.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import zdatbit.user.domain.User;
+import zdatbit.user.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,10 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private UserService service;
+
     @RequestMapping("/index")
     public void index(HttpServletRequest request, HttpServletResponse response){
         try {
@@ -50,8 +56,8 @@ public class UserController {
     @RequestMapping("/list")
     public ModelAndView userList(){
         ModelAndView model = new ModelAndView("admin/table-font-list");
-//        List<User> user =
-//        model.addObject("user",user);
+        List<User> user = service.selectAll();
+        model.addObject("user",user);
         return model;
     }
 }

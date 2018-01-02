@@ -1,7 +1,7 @@
 package zdatbit.common;
 
 import org.junit.Test;
-import zdatbit.user.UserService;
+import zdatbit.user.service.UserService;
 
 public class HelloTest {
     @Test
