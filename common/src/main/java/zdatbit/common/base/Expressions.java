@@ -1,4 +1,4 @@
-package zdatbit.user.base;
+package zdatbit.common.base;
 /**
  * 算式
  * @author Administrator

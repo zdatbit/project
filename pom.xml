@@ -11,7 +11,7 @@
     <modules>
         <module>common</module>
         <module>user</module>
-        <module>log</module>
+        <module>authLog</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
