@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+       
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 启动自动扫描 -->
+    <context:component-scan base-package="zdatbit.log.dao" />
+    <context:component-scan base-package="zdatbit.log.service" />
+	<!-- 读取属性文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+        	<value>classpath:config.properties</value>
+		</property>
+	</bean>
+	
+	<!-- 在配置的时候   cp30的属性的名字必须是   ''driverClass','jdbcUrl','user','password' 而 
+	  <property   name="properties">的名字也必须是“properties”，
+	  另外cp30配置文件的属性名也都是诸如："c3p0.minPoolSize"、"hc3p0.maxPoolSize"等等 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">					
+		<!-- 设置JDBC驱动名称 -->
+        <property name="driverClassName" value="${db_driverClass}" />
+        <!-- 设置JDBC连接URL -->
+        <property name="url" value="${db_url}" />
+        <!-- 设置数据库用户名 -->
+        <property name="username" value="${db_username}" />
+        <!-- 设置数据库密码 -->
+        <property name="password" value="${db_password}" />
+        <!-- 设置连接池初始值 -->
+        <property name="initialSize" value="5" />
+        
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+				<prop key="hibernate.dialect">${db_dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.jdbc.batch.size">100</prop><!-- 每100条语句提交一次 -->
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+				<prop key="hibernate.connection.SetBigStringTryClob">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop><!-- 开启二级缓存 -->
+				<prop key="hibernate.cache.configurationResourceName">classpath:ehcache.xml</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<!-- 可以加多个包 -->
+			<list>
+				<value>zdatbit.log.domain</value>
+			</list>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath*:zdatbit/log/mapper/*.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 配置 hibernate 局部事务管理 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">      
+    	<property name="sessionFactory" ref="sessionFactory">  
+    	</property>      
+   	</bean>
+   	<tx:annotation-driven transaction-manager="transactionManager"/>
+   	<!-- 事务增强bean -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 自动事务代理 -->
+   	<aop:config proxy-target-class="true">
+    	<aop:pointcut id="allServiceMethod" expression="execution(* zdatbit.user.dao..*.*(..))" />
+    	<aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethod" />
+	</aop:config>
+</beans>

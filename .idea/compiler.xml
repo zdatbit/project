@@ -12,10 +12,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="common" target="1.5" />
-      <module name="log" target="1.5" />
-      <module name="project" target="1.5" />
-      <module name="user" target="1.5" />
+      <module name="common" target="1.8" />
+      <module name="log" target="1.8" />
+      <module name="project" target="1.8" />
+      <module name="user" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

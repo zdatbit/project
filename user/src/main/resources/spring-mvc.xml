@@ -18,7 +18,7 @@
         <property name="suffix" value=".html" />
         <property name="contentType" value="text/html;charset=utf-8" />
         <property name="viewClass">
-            <value>zdatbit.user.base.ContextFreeMarkerView</value>
+            <value>zdatbit.common.base.ContextFreeMarkerView</value>
         </property>
     </bean>
     <!-- ===================================================== -->
@@ -40,7 +40,7 @@
                 <prop key="whitespace_stripping">true</prop>
                 <prop key="tag_syntax">auto_detect</prop>
                 <prop key="url_escaping_charset">UTF-8</prop>
-                <prop key = "template_exception_handler">zdatbit.user.base.FreeMarkerExceptionHandler</prop>
+                <prop key = "template_exception_handler">zdatbit.user.zdatbit.common.base.FreeMarkerExceptionHandler</prop>
             </props>
         </property>
     </bean>

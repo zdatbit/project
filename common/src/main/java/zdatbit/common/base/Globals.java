@@ -1,4 +1,4 @@
-package zdatbit.user.base;
+package zdatbit.common.base;
 
 /**
  * @author zhangdi

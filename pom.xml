@@ -11,7 +11,7 @@
     <modules>
         <module>common</module>
         <module>user</module>
-        <module>log</module>
+        <module>authLog</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +20,7 @@
         <aspectj.version>1.7.4</aspectj.version>
         <slf4j.version>1.7.13</slf4j.version>
         <asm.version>3.3</asm.version>
+        <java.home>C:/Program Files/Java/jdk1.8.0_111</java.home>
     </properties>
 
     <dependencies>
@@ -329,11 +330,6 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.7.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.baidu</groupId>
-            <artifactId>ueditor</artifactId>
-            <version>1.1.2</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.jfinal/jfinal -->
         <dependency>
@@ -406,5 +402,22 @@
             <version>1.0.0.Final</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                    <compilerArguments>
+                        <verbose />
+                        <bootclasspath>${java.home}/jre/lib/rt.jar;${java.home}/jre/lib/jce.jar</bootclasspath>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -3,13 +3,13 @@
  * @date 创建时间：2017年8月23日 下午4:04:34  	
  */
 
-package zdatbit.user.base;
-
-import java.io.Writer;
+package zdatbit.common.base;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+
+import java.io.Writer;
 
 public class FreeMarkerExceptionHandler implements TemplateExceptionHandler{
 
