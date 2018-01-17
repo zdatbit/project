@@ -16,7 +16,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.12.RELEASE</spring.version>
-        <hibernate.version>4.3.9.Final</hibernate.version>
+        <hibernate.version>5.2.10.Final</hibernate.version>
         <aspectj.version>1.7.4</aspectj.version>
         <slf4j.version>1.7.13</slf4j.version>
         <asm.version>3.3</asm.version>
