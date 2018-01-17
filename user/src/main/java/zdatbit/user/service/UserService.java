@@ -33,12 +33,12 @@ public class UserService extends TemplateService {
 
         User user0 = new User();
         user0.setUserName("zdatbit");
-        user0.setUserPassword("123456");
+        user0.setUserPhone("15652998191");
         list.add(user0);
 
         User user1 = new User();
         user1.setUserName("zda");
-        user1.setUserPassword("123456");
+        user1.setUserPhone("15652998192");
         list.add(user1);
         try {
             return dao.saveBatch(list);
