@@ -5,7 +5,7 @@
 
 package zdatbit.user.dao;
 
-import zdatbit.user.base.Expressions;
+import zdatbit.common.base.Expressions;
 
 import java.io.Serializable;
 import java.util.List;

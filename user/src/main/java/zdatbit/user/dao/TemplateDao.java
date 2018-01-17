@@ -21,8 +21,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import zdatbit.user.base.BetweenObject;
-import zdatbit.user.base.Expressions;
+import zdatbit.common.base.BetweenObject;
+import zdatbit.common.base.Expressions;
 
 
 @Transactional
