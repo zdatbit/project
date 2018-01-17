@@ -1,9 +1,14 @@
 package zdatbit.log.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name="auth_log")
 public class AuthLog implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer logID;
     private String ip;
     private Date createTime;

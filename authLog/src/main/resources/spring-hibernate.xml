@@ -40,7 +40,7 @@
         
 	</bean>
 	
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
@@ -52,7 +52,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.jdbc.batch.size">100</prop><!-- 每100条语句提交一次 -->
-				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
 				<prop key="hibernate.connection.SetBigStringTryClob">true</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop><!-- 开启二级缓存 -->
@@ -66,14 +66,9 @@
 				<value>zdatbit.log.domain</value>
 			</list>
 		</property>
-		<property name="mappingLocations">
-			<list>
-				<value>classpath*:zdatbit/log/mapper/*.hbm.xml</value>
-			</list>
-		</property>
 	</bean>
 	<!-- 配置 hibernate 局部事务管理 -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">      
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
     	<property name="sessionFactory" ref="sessionFactory">  
     	</property>      
    	</bean>

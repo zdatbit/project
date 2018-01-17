@@ -6,7 +6,7 @@ import java.util.List;
 
 
 import com.jfinal.plugin.activerecord.Page;
-import zdatbit.user.base.Expressions;
+import zdatbit.common.base.Expressions;
 
 @SuppressWarnings("rawtypes")
 public interface ITemplateService {
