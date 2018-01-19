@@ -20,7 +20,7 @@
         <aspectj.version>1.7.4</aspectj.version>
         <slf4j.version>1.7.13</slf4j.version>
         <asm.version>3.3</asm.version>
-        <java.home>C:/Program Files/Java/jdk1.8.0_111</java.home>
+        <java.home>D:\MysoftWare\Java\jdk1.8.0_151</java.home>
     </properties>
 
     <dependencies>
@@ -401,6 +401,29 @@
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.0.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.9</version>
+        </dependency>
+        <!-- dubbo -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.5.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

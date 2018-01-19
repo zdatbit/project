@@ -19,7 +19,7 @@ public class LogController {
 
     @RequestMapping("/index")
     public ModelAndView listAll(){
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("admin/index");
         List<AuthLog> log = service.list(AuthLog.class);
         mv.addObject("logs",log);
         return mv;

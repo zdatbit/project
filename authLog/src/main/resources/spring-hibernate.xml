@@ -81,7 +81,7 @@
     </tx:advice>
     <!-- 自动事务代理 -->
    	<aop:config proxy-target-class="true">
-    	<aop:pointcut id="allServiceMethod" expression="execution(* zdatbit.user.dao..*.*(..))" />
+    	<aop:pointcut id="allServiceMethod" expression="execution(* zdatbit.log.dao..*.*(..))" />
     	<aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethod" />
 	</aop:config>
 </beans>
